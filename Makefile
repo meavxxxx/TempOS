@@ -84,6 +84,7 @@ KERNEL_C_SOURCES := \
 	kernel/init/kmain.c \
 	kernel/init/panic.c \
 	kernel/arch/x86_64/interrupts/idt.c \
+	kernel/drivers/fb.c \
 	kernel/drivers/char/ps2_keyboard.c \
 	kernel/drivers/pci.c \
 	kernel/drivers/dma.c \

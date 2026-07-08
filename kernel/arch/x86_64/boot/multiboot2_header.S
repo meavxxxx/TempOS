@@ -12,6 +12,15 @@ header_start:
     .long MB2_HEADER_LEN
     .long MB2_CHECKSUM
 
+    /* Request a linear RGB framebuffer from Multiboot2 loaders. */
+    .align 8
+    .short 5
+    .short 0
+    .long 20
+    .long 1024
+    .long 768
+    .long 32
+
     /* End tag */
     .align 8
     .short 0

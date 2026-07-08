@@ -4,6 +4,7 @@
 #include <gnuos/capability.h>
 #include <gnuos/apic.h>
 #include <gnuos/acpi.h>
+#include <gnuos/fb.h>
 #include <gnuos/interrupts.h>
 #include <gnuos/keyboard.h>
 #include <gnuos/dma.h>
@@ -578,6 +579,11 @@ void kmain(uint64_t boot_magic, uint64_t boot_info_addr)
 
     if (!vmm_init()) {
         kpanic("failed to initialize vmm");
+    }
+    if (have_framebuffer && fb_init(&framebuffer_info)) {
+        fb_draw_boot_screen();
+    } else {
+        serial_write("GNU OS: framebuffer GUI unavailable, continuing with text console.\n");
     }
     x86_64_hardening_init();
     vmm_get_kernel_layout(&kernel_vmm_layout);
